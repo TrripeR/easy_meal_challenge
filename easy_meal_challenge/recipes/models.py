@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from easy_meal_challenge.accounts.models import Profile
@@ -14,6 +15,17 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='recipes')
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, related_name='recipes')
+    is_winner = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ("author", "challenge")
+
+    def clean(self):
+        if self.is_winner:
+            existing_winner = Recipe.objects.filter(challenge=self.challenge,is_winner=True).exclude(pk=self.pk)
+
+            if existing_winner.exists():
+                raise ValidationError("This challenge already has a winning recipe.")
 
     def __str__(self):
         return self.title
@@ -25,6 +37,10 @@ class Recipe(models.Model):
     @property
     def ingredients_count(self):
         return len(self.ingredients_list)
+
+    @property
+    def likes_count(self):
+        return self.likes.count()
 
 class Like(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
