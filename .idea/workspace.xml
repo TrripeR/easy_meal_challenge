@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aea83d81-94ff-4b40-93c4-b6ccc8f94a68" name="Changes" comment="forms">
-      <change afterPath="$PROJECT_DIR$/easy_meal_challenge/accounts/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/easy_meal_challenge/common/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/urls.py" afterDir="false" />
+    <list default="true" id="aea83d81-94ff-4b40-93c4-b6ccc8f94a68" name="Changes" comment="before templates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/common/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/common/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/recipes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/recipes/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/recipes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +105,7 @@
       <updated>1773048886414</updated>
       <workItem from="1773048887513" duration="4937000" />
       <workItem from="1773135236282" duration="8329000" />
-      <workItem from="1773245161004" duration="7274000" />
+      <workItem from="1773245161004" duration="8847000" />
     </task>
     <task id="LOCAL-00001" summary="first models">
       <option name="closed" value="true" />
@@ -159,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773245254236</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="before templates">
+      <option name="closed" value="true" />
+      <created>1773252954653</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773252954653</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +165,7 @@
     <MESSAGE value="first models" />
     <MESSAGE value="updated models and templates" />
     <MESSAGE value="forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="forms" />
+    <MESSAGE value="before templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="before templates" />
   </component>
 </project>
