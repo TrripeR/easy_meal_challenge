@@ -8,17 +8,34 @@ class RecipeCreateForm(forms.ModelForm):
         model = Recipe
         fields = ('title','ingredients', 'instructions', 'image_url',)
 
-    def clean_ingredients(self):
-        ingredients = self.cleaned_data['ingredients']
+    def clean(self):
+        cleaned_data = super().clean()
 
-        ingredients_list = [i.strip() for i in ingredients.split("\n") if i.strip()]
+        ingredients = cleaned_data.get("ingredients")
 
-        challenge = self.initial.get('challenge')
+        if not ingredients:
+            return cleaned_data
 
-        if challenge and len(ingredients_list) > challenge.max_ingredients:
-            raise forms.ValidationError(f"You can only use {challenge.max_ingredients} ingredients.")
+        ingredients_list = [i.strip().lower() for i in ingredients.split("\n") if i.strip()]
 
-        return ingredients
+        challenge = self.initial.get("challenge")
+
+        if not challenge:
+            return cleaned_data
+
+        required = challenge.required_ingredient.lower()
+
+        if required not in ingredients_list:
+            raise forms.ValidationError(
+                f"The recipe must include '{challenge.required_ingredient}'."
+            )
+
+        if len(ingredients_list) > challenge.max_ingredients:
+            raise forms.ValidationError(
+                f"You can only use {challenge.max_ingredients} ingredients."
+            )
+
+        return cleaned_data
 
 
 class RecipeUpdateForm(forms.ModelForm):

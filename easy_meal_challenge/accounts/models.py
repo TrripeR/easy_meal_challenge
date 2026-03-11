@@ -7,6 +7,7 @@ class Badge(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
     icon = models.CharField(max_length=100)
+    users = models.ManyToManyField(User,blank=True,related_name="badges")
 
     def __str__(self):
         return self.name
