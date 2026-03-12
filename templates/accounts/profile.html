@@ -4,24 +4,69 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-6">
+
         <h1 class="mb-4 text-center">{{ user.username }}'s Profile</h1>
 
         <div class="card mb-4">
-            <div class="card-body">
+            <div class="card-body text-center">
+
+                <!-- Avatar -->
+                {% if profile.avatar_url %}
+                    <img src="{{ profile.avatar_url }}"
+                         class="rounded-circle mb-3"
+                         width="120"
+                         height="120"
+                         alt="Avatar">
+                {% else %}
+                    <img src="https://via.placeholder.com/120"
+                         class="rounded-circle mb-3"
+                         alt="Avatar">
+                {% endif %}
+
                 <p><strong>Username:</strong> {{ user.username }}</p>
                 <p><strong>Email:</strong> {{ user.email }}</p>
-                {% if profile %}
-                    <p><strong>Age:</strong> {{ profile.age }}</p>
-                    <p><strong>Height:</strong> {{ profile.height }} cm</p>
-                    <p><strong>Weight:</strong> {{ profile.weight }} kg</p>
+
+                <!-- Bio -->
+                {% if profile.bio %}
+                    <p><strong>Bio:</strong></p>
+                    <p>{{ profile.bio }}</p>
+                {% else %}
+                    <p class="text-muted">No bio yet.</p>
                 {% endif %}
+
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Badges</h5>
+
+                {% if profile.badges.all %}
+                    <ul class="list-group">
+                        {% for badge in profile.badges.all %}
+                            <li class="list-group-item">
+                                {{ badge.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No badges earned yet.</p>
+                {% endif %}
+
             </div>
         </div>
 
         <div class="d-flex justify-content-between">
-            <a href="{% url 'profile-edit' %}" class="btn btn-warning">Edit Profile</a>
-            <a href="{% url 'active-challenge' %}" class="btn btn-secondary">Back to Challenges</a>
+            <a href="{% url 'profile-edit' %}" class="btn btn-warning">
+                Edit Profile
+            </a>
+
+            <a href="{% url 'active-challenge' %}" class="btn btn-secondary">
+                Back to Challenges
+            </a>
         </div>
+
     </div>
 </div>
 {% endblock %}

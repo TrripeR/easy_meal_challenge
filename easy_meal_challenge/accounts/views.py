@@ -34,11 +34,13 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("profile")
 
     def get_object(self, queryset=None):
-        # Always return the logged-in user's profile
         try:
             profile = self.request.user.profile
         except Profile.DoesNotExist:
             profile = Profile.objects.create(user=self.request.user)
         return profile
 
-
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs

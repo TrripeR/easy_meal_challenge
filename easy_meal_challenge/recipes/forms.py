@@ -27,7 +27,7 @@ class RecipeCreateForm(forms.ModelForm):
 
         if required not in ingredients_list:
             raise forms.ValidationError(
-                f"The recipe must include '{challenge.required_ingredient}'."
+                f"The recipe must include '{challenge.required_ingredients}'."
             )
 
         if len(ingredients_list) > challenge.max_ingredients:

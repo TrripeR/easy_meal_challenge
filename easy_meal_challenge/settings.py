@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'easy_meal_challenge.accounts',
+    'easy_meal_challenge.accounts.apps.AccountsConfig',
     'easy_meal_challenge.challenges',
     'easy_meal_challenge.recipes',
     'easy_meal_challenge.common',

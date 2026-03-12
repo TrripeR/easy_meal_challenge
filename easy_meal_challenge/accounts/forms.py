@@ -13,7 +13,30 @@ class RegisterForm(UserCreationForm):
 
 
 class ProfileEditForm(forms.ModelForm):
+    username = forms.CharField(max_length=150)
+    email = forms.EmailField()
 
     class Meta:
         model = Profile
-        fields = ('avatar_url', 'bio',)
+        fields = ('avatar_url', 'bio')
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].initial = user.username
+        self.fields['email'].initial = user.email
+
+        self.user = user
+
+    def save(self, commit=True):
+        profile = super().save(commit=False)
+
+        self.user.username = self.cleaned_data['username']
+        self.user.email = self.cleaned_data['email']
+
+        if commit:
+            self.user.save()
+            profile.save()
+
+        return profile

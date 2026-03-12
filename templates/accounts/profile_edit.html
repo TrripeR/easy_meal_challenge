@@ -19,61 +19,41 @@
                         </div>
                     {% endif %}
 
-                    <!-- Username (optional: usually read-only) -->
+                    <!-- Avatar URL -->
                     <div class="mb-3">
-                        <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
-                        {{ form.username }}
-                        {% for error in form.username.errors %}
+                        <label for="{{ form.avatar_url.id_for_label }}" class="form-label">
+                            Avatar URL
+                        </label>
+                        {{ form.avatar_url }}
+                        {% for error in form.avatar_url.errors %}
                             <div class="text-danger small">{{ error }}</div>
                         {% endfor %}
                     </div>
 
-                    <!-- Email -->
+                    <!-- Bio -->
                     <div class="mb-3">
-                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
-                        {{ form.email }}
-                        {% for error in form.email.errors %}
+                        <label for="{{ form.bio.id_for_label }}" class="form-label">
+                            Bio
+                        </label>
+                        {{ form.bio }}
+                        {% for error in form.bio.errors %}
                             <div class="text-danger small">{{ error }}</div>
                         {% endfor %}
                     </div>
 
-                    <!-- Age -->
-                    <div class="mb-3">
-                        <label for="{{ form.age.id_for_label }}" class="form-label">Age</label>
-                        {{ form.age }}
-                        {% for error in form.age.errors %}
-                            <div class="text-danger small">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <!-- Height -->
-                    <div class="mb-3">
-                        <label for="{{ form.height.id_for_label }}" class="form-label">Height (cm)</label>
-                        {{ form.height }}
-                        {% for error in form.height.errors %}
-                            <div class="text-danger small">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <!-- Weight -->
-                    <div class="mb-3">
-                        <label for="{{ form.weight.id_for_label }}" class="form-label">Weight (kg)</label>
-                        {{ form.weight }}
-                        {% for error in form.weight.errors %}
-                            <div class="text-danger small">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <!-- Submit Button -->
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-success">Save Changes</button>
+                        <button type="submit" class="btn btn-success">
+                            Save Changes
+                        </button>
                     </div>
 
                 </form>
             </div>
         </div>
 
-        <a href="{% url 'profile' %}" class="btn btn-secondary mt-3">Back to Profile</a>
+        <a href="{% url 'profile' %}" class="btn btn-secondary mt-3">
+            Back to Profile
+        </a>
     </div>
 </div>
 {% endblock %}
