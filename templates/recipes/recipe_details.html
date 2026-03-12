@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }}{% endblock %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="mb-4 text-center">{{ recipe.title }}</h1>
+
+        <div class="card mb-4">
+            {% if recipe.image_url %}
+                <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}">
+            {% endif %}
+            <div class="card-body">
+                <p><strong>Author:</strong> {{ recipe.author.username }}</p>
+                <p><strong>Ingredients:</strong><br>{{ recipe.ingredients|linebreaks }}</p>
+                <p><strong>Instructions:</strong><br>{{ recipe.instructions|linebreaks }}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Likes: {{ recipe.likes_count }}</span>
+
+                {% if user.is_authenticated %}
+                    {% if user_liked %}
+                        <a href="{% url 'recipe-like' recipe.pk %}" class="btn btn-sm btn-outline-danger">Unlike</a>
+                    {% else %}
+                        <a href="{% url 'recipe-like' recipe.pk %}" class="btn btn-sm btn-outline-primary">Like</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if user == recipe.author %}
+            <div class="d-flex justify-content-between mb-4">
+                <a href="{% url 'recipe-update' recipe.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'recipe-delete' recipe.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'active-challenge' %}" class="btn btn-secondary">Back to Active Challenge</a>
+
+    </div>
+</div>
+
+{% endblock %}

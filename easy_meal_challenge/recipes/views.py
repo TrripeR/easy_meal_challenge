@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+from easy_meal_challenge.accounts.models import Profile
 from easy_meal_challenge.challenges.models import Challenge
 from easy_meal_challenge.recipes.forms import RecipeCreateForm, RecipeUpdateForm
 from easy_meal_challenge.recipes.models import Recipe, Like
@@ -25,9 +27,9 @@ class RecipeCreateView(LoginRequiredMixin,CreateView):
         return kwargs
 
     def form_valid(self, form):
-        challenge  = Challenge.objects.filter(is_active=True)
+        challenge  = Challenge.objects.filter(is_active=True).first()
 
-        form.instance.author = self.request.user
+        form.instance.author = self.request.user.profile
         form.instance.challenge = challenge
 
         return super().form_valid(form)
@@ -83,17 +85,24 @@ class WinnerListView(ListView):
         return Recipe.objects.filter(is_winner=True)
 
 
-@login_required
 def toggle_like(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
-    like = Like.objects.filter(user=request.user, recipe=recipe).first()
 
-    if like:
-        like.delete()  # Unlike
+    # Get or create the profile for logged-in user
+    try:
+        profile = request.user.profile
+    except ObjectDoesNotExist:
+        profile = Profile.objects.create(user=request.user)
+
+    # Check if this profile already liked the recipe
+    like_instance = Like.objects.filter(recipe=recipe, user=profile).first()
+
+    if like_instance:
+        # Already liked → remove it
+        like_instance.delete()
     else:
-        Like.objects.create(
-            user=request.user,
-            recipe=recipe
-        )
+        # Not liked yet → create a new Like
+        Like.objects.create(recipe=recipe, user=profile)
 
-    return redirect("recipe-details", pk=pk)
+    # Redirect back to the page you want (e.g., active challenge)
+    return redirect('active-challenge')

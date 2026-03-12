@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Active Challenge{% endblock %}
 
-</body>
-</html>
+{% block content %}
+
+<h1 class="mb-4 text-center">{{ challenge.title }}</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <p><strong>Required ingredient:</strong> {{ challenge.required_ingredients }}</p>
+        <p><strong>Max ingredients:</strong> {{ challenge.max_ingredients }}</p>
+        <p><strong>Ends on:</strong> {{ challenge.end_date|date:"M d, Y" }}</p>
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+    {% if not user_has_submitted %}
+        <div class="mb-4">
+            <a href="{% url 'recipe-create' %}" class="btn btn-success">Submit Your Recipe</a>
+        </div>
+    {% else %}
+        <p class="text-success mb-4">You have already submitted a recipe for this challenge.</p>
+    {% endif %}
+{% else %}
+    <p class="text-info mb-4">Login to submit your recipe and like others!</p>
+{% endif %}
+
+<h2 class="mb-3">Submitted Recipes</h2>
+
+{% if recipes %}
+    <div class="row">
+        {% for recipe in recipes %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    {% if recipe.image_url %}
+                        <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p class="card-text"><strong>By:</strong> {{ recipe.author.user.username }}</p>
+                        <p class="card-text"><strong>Ingredients:</strong><br>{{ recipe.ingredients|linebreaks }}</p>
+                        <p class="card-text"><strong>Instructions:</strong><br>{{ recipe.instructions|linebreaks }}</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <span>Likes: {{ recipe.likes_count }}</span>
+                        {% if user.is_authenticated %}
+                            {% if recipe.user_liked %}
+                                <a href="{% url 'recipe-like' recipe.pk %}" class="btn btn-sm btn-outline-danger">Unlike</a>
+                            {% else %}
+                                <a href="{% url 'recipe-like' recipe.pk %}" class="btn btn-sm btn-outline-primary">Like</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No recipes submitted yet. Be the first to submit!</p>
+{% endif %}
+
+{% endblock %}

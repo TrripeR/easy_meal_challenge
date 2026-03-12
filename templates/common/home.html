@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="text-center my-5">
+    <h1 class="mb-3">Welcome to Easy Meal Challenge!</h1>
+    <p class="lead mb-4">
+        Join weekly cooking challenges, submit your recipes, like others, and see the winners!
+    </p>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'active-challenge' %}" class="btn btn-success btn-lg me-2">View Active Challenge</a>
+        <a href="{% url 'winners' %}" class="btn btn-primary btn-lg">Winning Recipes</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-success btn-lg me-2">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Register</a>
+    {% endif %}
+</div>
+
+<!-- Optional: Feature Cards -->
+<div class="row text-center mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Weekly Challenges</h5>
+                <p class="card-text">Participate in fun weekly challenges with easy ingredients.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Submit Recipes</h5>
+                <p class="card-text">Share your creations and see who earns the top spot!</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Community Likes</h5>
+                <p class="card-text">Vote on your favorite recipes and help decide the winners.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

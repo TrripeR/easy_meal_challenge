@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Winning Recipes{% endblock %}
 
-</body>
-</html>
+{% block content %}
+
+<h1 class="mb-4 text-center">Winning Recipes</h1>
+
+{% if winning_recipes %}
+    <div class="row">
+        {% for recipe in winning_recipes %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if recipe.image_url %}
+                        <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p class="card-text"><strong>By:</strong> {{ recipe.author.username }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url 'recipe-details' recipe.pk %}" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-center">No winning recipes yet. Check back soon!</p>
+{% endif %}
+
+{% endblock %}

@@ -23,7 +23,7 @@ class RecipeCreateForm(forms.ModelForm):
         if not challenge:
             return cleaned_data
 
-        required = challenge.required_ingredient.lower()
+        required = challenge.required_ingredients.lower()
 
         if required not in ingredients_list:
             raise forms.ValidationError(

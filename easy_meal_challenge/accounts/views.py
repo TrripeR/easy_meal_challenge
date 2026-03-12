@@ -22,10 +22,23 @@ class UserLoginView(LoginView):
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'accounts/profile.html'
+    context = 'profile'
 
+    def get_object(self):
+        return Profile.objects.get(user=self.request.user)
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
-    template_name = 'accounts/profile.html'
-    success_url = reverse_lazy('profile')
+    template_name = 'accounts/profile_edit.html'
+    success_url = reverse_lazy("profile")
+
+    def get_object(self, queryset=None):
+        # Always return the logged-in user's profile
+        try:
+            profile = self.request.user.profile
+        except Profile.DoesNotExist:
+            profile = Profile.objects.create(user=self.request.user)
+        return profile
+
+

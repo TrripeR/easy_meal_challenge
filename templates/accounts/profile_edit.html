@@ -1,10 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Edit Profile{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="mb-4 text-center">Edit Profile</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Username (optional: usually read-only) -->
+                    <div class="mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                        {{ form.username }}
+                        {% for error in form.username.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Age -->
+                    <div class="mb-3">
+                        <label for="{{ form.age.id_for_label }}" class="form-label">Age</label>
+                        {{ form.age }}
+                        {% for error in form.age.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Height -->
+                    <div class="mb-3">
+                        <label for="{{ form.height.id_for_label }}" class="form-label">Height (cm)</label>
+                        {{ form.height }}
+                        {% for error in form.height.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Weight -->
+                    <div class="mb-3">
+                        <label for="{{ form.weight.id_for_label }}" class="form-label">Weight (kg)</label>
+                        {{ form.weight }}
+                        {% for error in form.weight.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <a href="{% url 'profile' %}" class="btn btn-secondary mt-3">Back to Profile</a>
+    </div>
+</div>
+{% endblock %}
