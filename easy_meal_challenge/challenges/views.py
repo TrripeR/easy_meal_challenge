@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import  DetailView
+from django.views.generic import DetailView, TemplateView
 
 from easy_meal_challenge.challenges.models import Challenge
 from easy_meal_challenge.recipes.models import Recipe
@@ -12,7 +12,7 @@ class ActiveChallengeView(DetailView):
     context_object_name = 'challenge'
 
     def get_object(self):
-        return Challenge.objects.filter(is_active=True).first()
+        return Challenge.get_active()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,3 +27,5 @@ class ActiveChallengeView(DetailView):
             context['user_has_submitted'] = False
 
         return context
+
+

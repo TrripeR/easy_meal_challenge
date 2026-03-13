@@ -15,7 +15,7 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ recipe.title }}</h5>
-                        <p class="card-text"><strong>By:</strong> {{ recipe.author.username }}</p>
+                        <p class="card-text"><strong>By:</strong> {{ recipe.author.user.username }}</p>
                     </div>
                     <div class="card-footer text-center">
                         <a href="{% url 'recipe-details' recipe.pk %}" class="btn btn-primary btn-sm">View Recipe</a>

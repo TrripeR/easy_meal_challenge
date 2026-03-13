@@ -48,7 +48,7 @@ class RecipeDetailView(DetailView):
         if self.request.user.is_authenticated:
             context['user_liked'] = Like.objects.filter(
                 recipe=recipe,
-                user=self.request.user
+                user=self.request.user.profile
             ).exists()
 
         return context
@@ -79,7 +79,7 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class WinnerListView(ListView):
     model = Recipe
     template_name = 'recipes/winners.html'
-    context_object_name = 'recipes'
+    context_object_name = 'winning_recipes'
 
     def get_queryset(self):
         return Recipe.objects.filter(is_winner=True)
@@ -88,21 +88,16 @@ class WinnerListView(ListView):
 def toggle_like(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
 
-    # Get or create the profile for logged-in user
     try:
         profile = request.user.profile
     except ObjectDoesNotExist:
         profile = Profile.objects.create(user=request.user)
 
-    # Check if this profile already liked the recipe
     like_instance = Like.objects.filter(recipe=recipe, user=profile).first()
 
     if like_instance:
-        # Already liked → remove it
         like_instance.delete()
     else:
-        # Not liked yet → create a new Like
         Like.objects.create(recipe=recipe, user=profile)
 
-    # Redirect back to the page you want (e.g., active challenge)
     return redirect('active-challenge')

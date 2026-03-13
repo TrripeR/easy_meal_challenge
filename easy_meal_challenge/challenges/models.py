@@ -23,16 +23,24 @@ class Challenge(models.Model):
                 raise ValidationError("There can be only one active challenge.")
 
     def check_if_expired(self):
+        now = timezone.now()
 
-        today = timezone.now().date()
-
-        if self.is_active and self.end_date < today:
+        if self.is_active and self.end_date < now:
             self.is_active = False
             self.save()
 
+
     @classmethod
     def get_active(cls):
-        return cls.objects.filter(is_active=True).first()
+        challenge = cls.objects.filter(is_active=True).first()
+
+        if challenge:
+            challenge.check_if_expired()
+
+            if not challenge.is_active:
+                return None
+
+        return challenge
 
     def __str__(self):
         return self.title
