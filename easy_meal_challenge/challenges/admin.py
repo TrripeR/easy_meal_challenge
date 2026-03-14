@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from easy_meal_challenge.challenges.models import Challenge
-from easy_meal_challenge.recipes.models import Recipe
 
 
 # Register your models here.
