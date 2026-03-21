@@ -64,7 +64,7 @@ class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         recipe = self.get_object()
-        return recipe.author == self.request.user
+        return recipe.author == self.request.user.profile
 
 class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Recipe
@@ -85,6 +85,7 @@ class WinnerListView(ListView):
         return Recipe.objects.filter(is_winner=True)
 
 
+@login_required
 def toggle_like(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
 

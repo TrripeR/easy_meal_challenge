@@ -27,5 +27,3 @@ class ActiveChallengeView(DetailView):
             context['user_has_submitted'] = False
 
         return context
-
-

@@ -4,9 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aea83d81-94ff-4b40-93c4-b6ccc8f94a68" name="Changes" comment="wasnt working, now it does... almost">
+    <list default="true" id="aea83d81-94ff-4b40-93c4-b6ccc8f94a68" name="Changes" comment="ready for deploy?">
+      <change afterPath="$PROJECT_DIR$/easy_meal_challenge/accounts/validators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/challenges/create_challenge.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/challenges/update_challenge.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/easy_meal_challenge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/easy_meal_challenge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/accounts/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/recipes/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/recipes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/recipes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/recipes/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easy_meal_challenge/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/profile_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/profile_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/about.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +53,12 @@
     &quot;assignee&quot;: &quot;TrripeR&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/TrripeR/easy_meal_challenge.git",
-    "accountId": "fc435437-cda6-4aae-975b-a45906ba8a36"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TrripeR/easy_meal_challenge.git&quot;,
+    &quot;accountId&quot;: &quot;fc435437-cda6-4aae-975b-a45906ba8a36&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -47,6 +70,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.easy_meal_challenge.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -74,7 +99,30 @@
       <recent name="C:\Users\Dell\Documents\Projekat\easy_meal_challenge\easy_meal_challenge" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.check">
+    <configuration name="check" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="easy_meal_challenge" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/easy_meal_challenge" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/easy_meal_challenge/check.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="easy_meal_challenge" type="Python.DjangoServer" factoryName="Django server">
       <module name="easy_meal_challenge" />
       <option name="ENV_FILES" value="" />
@@ -82,6 +130,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="easy_meal_challenge.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -99,6 +148,11 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.check" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -121,7 +175,14 @@
       <workItem from="1773245161004" duration="10179000" />
       <workItem from="1773262322607" duration="12463000" />
       <workItem from="1773341722518" duration="7193000" />
-      <workItem from="1773420009830" duration="12288000" />
+      <workItem from="1773420009830" duration="14719000" />
+      <workItem from="1773568577776" duration="3714000" />
+      <workItem from="1773582377730" duration="190000" />
+      <workItem from="1773582637670" duration="58000" />
+      <workItem from="1773603126979" duration="427000" />
+      <workItem from="1773603614281" duration="4211000" />
+      <workItem from="1773677590963" duration="5428000" />
+      <workItem from="1774031905315" duration="6171000" />
     </task>
     <task id="LOCAL-00001" summary="first models">
       <option name="closed" value="true" />
@@ -227,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773512737063</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ready for deploy?">
+      <option name="closed" value="true" />
+      <created>1773516430375</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773516430375</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +310,10 @@
     <MESSAGE value="almost working" />
     <MESSAGE value="working....maybe" />
     <MESSAGE value="wasnt working, now it does... almost" />
-    <option name="LAST_COMMIT_MESSAGE" value="wasnt working, now it does... almost" />
+    <MESSAGE value="ready for deploy?" />
+    <option name="LAST_COMMIT_MESSAGE" value="ready for deploy?" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/easy_meal_challenge$check.coverage" NAME="check Coverage Results" MODIFIED="1774036462899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/easy_meal_challenge" />
   </component>
 </project>

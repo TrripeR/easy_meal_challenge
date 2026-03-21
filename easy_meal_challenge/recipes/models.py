@@ -11,7 +11,7 @@ class Recipe(models.Model):
     title = models.CharField(max_length=120)
     ingredients = models.TextField(help_text="Enter one ingredient per line")
     instructions = models.TextField()
-    image_url = models.URLField(blank=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='recipes')
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, related_name='recipes')

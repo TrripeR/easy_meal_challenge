@@ -22,7 +22,7 @@ class UserLoginView(LoginView):
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'accounts/profile.html'
-    context = 'profile'
+    context_object_name = 'profile'
 
     def get_object(self):
         return Profile.objects.get(user=self.request.user)

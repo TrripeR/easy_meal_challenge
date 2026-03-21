@@ -1,32 +1,65 @@
 {% extends "base.html" %}
-{% block title %}About{% endblock %}
+
+{% block title %}About | Easy Meal Challenge{% endblock %}
 
 {% block content %}
 
-<div class="row justify-content-center my-5">
-    <div class="col-md-8">
-        <h1 class="mb-4 text-center">About Easy Meal Challenge</h1>
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">About Easy Meal Challenge</h1>
+    <p class="lead text-muted">
+        Making cooking simple, fun, and accessible for everyone 🍳
+    </p>
+</div>
 
-        <p class="lead">
-            Easy Meal Challenge is a fun platform where cooking enthusiasts can join weekly food challenges,
-            share their recipes, and vote on others’ creations.
-        </p>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
 
-        <p>
-            Each week, our admins post a new challenge with a required ingredient or theme. Users can submit
-            recipes that follow the challenge rules and like other recipes. At the end of the week, the recipe
-            with the most likes is declared the winner!
-        </p>
+        <!-- Card -->
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
 
-        <p>
-            Our mission is to make cooking easy, fast, and enjoyable for everyone. Whether you are a beginner
-            or an experienced cook, you can join the challenges and showcase your creativity.
-        </p>
+                <h4 class="mb-3">What is this app?</h4>
+                <p>
+                    <strong>Easy Meal Challenge</strong> is a community-driven platform where users can share
+                    quick and simple recipes based on a specific challenge.
+                </p>
 
-        <div class="text-center mt-4">
-            <a href="{% url 'active-challenge' %}" class="btn btn-success btn-lg me-2">Join a Challenge</a>
-            <a href="{% url 'winners' %}" class="btn btn-primary btn-lg">See Winners</a>
+                <hr>
+
+                <h4 class="mb-3">How it works</h4>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item">
+                        🥕 A new cooking challenge is active at a time
+                    </li>
+                    <li class="list-group-item">
+                        🍽️ Users submit their own recipes based on the rules
+                    </li>
+                    <li class="list-group-item">
+                        👍 Everyone can like and support their favorite recipes
+                    </li>
+                    <li class="list-group-item">
+                        🏆 The best recipe becomes the winner
+                    </li>
+                </ul>
+
+                <hr>
+
+                <h4 class="mb-3">Our Goal</h4>
+                <p>
+                    We want to make cooking less stressful and more enjoyable by encouraging creativity
+                    with limited ingredients and simple steps. Whether you're a beginner or experienced cook,
+                    this is a place to have fun and get inspired.
+                </p>
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'active-challenge' %}" class="btn btn-dark">
+                        View Active Challenge
+                    </a>
+                </div>
+
+            </div>
         </div>
+
     </div>
 </div>
 

@@ -6,7 +6,7 @@ class RecipeCreateForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('title','ingredients', 'instructions', 'image_url',)
+        fields = ('title','ingredients', 'instructions', 'image',)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -42,7 +42,7 @@ class RecipeUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('title','ingredients', 'instructions', 'image_url',)
+        fields = ('title','ingredients', 'instructions', 'image',)
 
 
 class RecipeDeleteForm(forms.ModelForm):
