@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, TemplateView
 
+from easy_meal_challenge.challenges.forms import ChallengeCreateForm, ChallengeUpdateForm
 from easy_meal_challenge.challenges.models import Challenge
 from easy_meal_challenge.recipes.models import Recipe
 
@@ -27,3 +28,28 @@ class ActiveChallengeView(DetailView):
             context['user_has_submitted'] = False
 
         return context
+
+
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin
+
+class ChallengeUpdateView(UserPassesTestMixin, UpdateView):
+    model = Challenge
+    form_class = ChallengeUpdateForm
+    template_name = 'challenges/update_challenge.html'
+    success_url = reverse_lazy('active-challenge')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+from django.views.generic import CreateView
+
+class ChallengeCreateView(UserPassesTestMixin, CreateView):
+    model = Challenge
+    form_class = ChallengeCreateForm
+    template_name = 'challenges/create_challenge.html'
+    success_url = reverse_lazy('active-challenge')
+
+    def test_func(self):
+        return self.request.user.is_staff

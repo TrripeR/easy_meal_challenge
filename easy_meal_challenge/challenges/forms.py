@@ -6,7 +6,7 @@ class ChallengeCreateForm(forms.ModelForm):
 
     class Meta:
         model = Challenge
-        fields = ('title', 'description', 'required_ingredients', 'max_ingredients', 'theme', 'start_date', 'end_date', )
+        fields = ('title', 'description', 'required_ingredients', 'max_ingredients', 'theme', 'start_date', 'end_date', 'is_active' )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -24,4 +24,4 @@ class ChallengeUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Challenge
-        fields = ('title', 'description', 'required_ingredient', 'max_ingredients', 'theme', 'start_date', 'end_date', 'image_url',)
+        fields = ('title', 'description', 'required_ingredients', 'max_ingredients', 'theme', 'start_date', 'end_date', 'is_active')

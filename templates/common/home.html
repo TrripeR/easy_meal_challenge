@@ -3,47 +3,69 @@
 
 {% block content %}
 
-<div class="text-center my-5">
-    <h1 class="mb-3">Welcome to Easy Meal Challenge!</h1>
-    <p class="lead mb-4">
-        Join weekly cooking challenges, submit your recipes, like others, and see the winners!
+<!-- HERO SECTION -->
+<div class="text-center py-5 mb-5 bg-light rounded shadow-sm">
+
+    <h1 class="fw-bold mb-3">Easy Meal Challenge</h1>
+
+    <p class="lead text-muted mb-4">
+        Simple ingredients. Creative meals. Fun competition.
     </p>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'active-challenge' %}" class="btn btn-success btn-lg me-2">View Active Challenge</a>
-        <a href="{% url 'winners' %}" class="btn btn-primary btn-lg">Winning Recipes</a>
+        <a href="{% url 'active-challenge' %}" class="btn btn-dark btn-lg me-2">
+            View Active Challenge
+        </a>
+        <a href="{% url 'winners' %}" class="btn btn-outline-dark btn-lg">
+            Winning Recipes
+        </a>
     {% else %}
-        <a href="{% url 'login' %}" class="btn btn-success btn-lg me-2">Login</a>
-        <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Register</a>
+        <a href="{% url 'login' %}" class="btn btn-dark btn-lg me-2">
+            Login
+        </a>
+        <a href="{% url 'register' %}" class="btn btn-outline-dark btn-lg">
+            Register
+        </a>
     {% endif %}
+
 </div>
 
-<!-- Optional: Feature Cards -->
-<div class="row text-center mt-5">
+<!-- FEATURES SECTION -->
+<div class="row text-center">
+
     <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-                <h5 class="card-title">Weekly Challenges</h5>
-                <p class="card-text">Participate in fun weekly challenges with easy ingredients.</p>
+                <h5 class="card-title fw-semibold">Weekly Challenges</h5>
+                <p class="card-text text-muted">
+                    Participate in fun cooking challenges with limited ingredients.
+                </p>
             </div>
         </div>
     </div>
+
     <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-                <h5 class="card-title">Submit Recipes</h5>
-                <p class="card-text">Share your creations and see who earns the top spot!</p>
+                <h5 class="card-title fw-semibold">Submit Recipes</h5>
+                <p class="card-text text-muted">
+                    Share your creations and compete with the community.
+                </p>
             </div>
         </div>
     </div>
+
     <div class="col-md-4 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-                <h5 class="card-title">Community Likes</h5>
-                <p class="card-text">Vote on your favorite recipes and help decide the winners.</p>
+                <h5 class="card-title fw-semibold">Community Votes</h5>
+                <p class="card-text text-muted">
+                    Like your favorite recipes and help choose the winner.
+                </p>
             </div>
         </div>
     </div>
+
 </div>
 
 {% endblock %}

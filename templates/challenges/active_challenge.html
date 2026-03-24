@@ -1,78 +1,138 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %}Active Challenge{% endblock %}
 
 {% block content %}
 
+<!-- ADMIN ACTIONS -->
+{% if user.is_staff %}
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'challenge-create' %}" class="btn btn-dark btn-sm me-2">
+        Create Challenge
+    </a>
+
+    {% if challenge %}
+        <a href="{% url 'challenge-update' challenge.pk %}" class="btn btn-outline-dark btn-sm">
+            Edit Challenge
+        </a>
+    {% endif %}
+</div>
+{% endif %}
+
+
 {% if challenge %}
 
-<h1 class="mb-4 text-center">{{ challenge.title }}</h1>
+<!-- CHALLENGE CARD -->
+<div class="card shadow-sm mb-5">
 
-<div class="card mb-4">
-    <div class="card-body">
-        <p><strong>Required ingredient:</strong> {{ challenge.required_ingredients }}</p>
-        <p><strong>Max ingredients:</strong> {{ challenge.max_ingredients }}</p>
-        <p><strong>Description:</strong> {{ challenge.description }}</p>
-        <p><strong>Ends on:</strong> {{ challenge.end_date|date:"M d, Y" }}</p>
+    <img src="{% static 'images/challenge_img.png' %}"
+         class="card-img-top"
+         style="height:300px; object-fit:cover;">
+
+    <div class="card-body text-center">
+
+        <h2 class="fw-bold mb-3">{{ challenge.title }}</h2>
+
+        <p class="text-muted">{{ challenge.description }}</p>
+
+        {% if challenge.theme %}
+            <p><strong>Theme:</strong> {{ challenge.theme }}</p>
+        {% endif %}
+
+        <p>
+            <strong>Required Ingredient:</strong> {{ challenge.required_ingredients }}
+        </p>
+
+        <p>
+            <strong>Max Ingredients:</strong> {{ challenge.max_ingredients }}
+        </p>
+
+        <p class="text-muted">
+            {{ challenge.start_date|date:"M d, Y" }} →
+            {{ challenge.end_date|date:"M d, Y" }}
+        </p>
+
+        <!-- POST BUTTON -->
+        {% if user.is_authenticated %}
+            {% if not user_has_submitted %}
+                <a href="{% url 'recipe-create' %}" class="btn btn-dark mt-3">
+                    Post Your Recipe
+                </a>
+            {% else %}
+                <p class="text-success mt-3">
+                    You already submitted a recipe for this challenge.
+                </p>
+            {% endif %}
+        {% else %}
+            <p class="mt-3">
+                <a href="{% url 'login' %}">Login</a> to submit a recipe.
+            </p>
+        {% endif %}
+
     </div>
 </div>
 
-{% if user.is_authenticated %}
-    {% if not user_has_submitted %}
-        <div class="mb-4">
-            <a href="{% url 'recipe-create' %}" class="btn btn-success">Submit Your Recipe</a>
-        </div>
-    {% else %}
-        <p class="text-success mb-4">You have already submitted a recipe for this challenge.</p>
-    {% endif %}
-{% else %}
-    <p class="text-info mb-4">Login to submit your recipe and like others!</p>
-{% endif %}
 
-<h2 class="mb-3">Submitted Recipes</h2>
+<!-- RECIPES -->
+<h3 class="text-center mb-4">Submitted Recipes</h3>
 
 {% if recipes %}
-    <div class="row">
-        {% for recipe in recipes %}
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
+<div class="row">
+    {% for recipe in recipes %}
+        <div class="col-md-4 mb-4">
 
-                    {% if recipe.image_url %}
-                        <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}">
-                    {% endif %}
+            <div class="card h-100 shadow-sm">
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ recipe.title }}</h5>
-                        <p class="card-text"><strong>By:</strong> {{ recipe.author.user.username }}</p>
-                        <p class="card-text"><strong>Ingredients:</strong><br>{{ recipe.ingredients|linebreaks }}</p>
-                        <p class="card-text"><strong>Instructions:</strong><br>{{ recipe.instructions|linebreaks }}</p>
-                    </div>
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}"
+                         class="card-img-top"
+                         style="height:200px; object-fit:cover;">
+                {% else %}
+                    <img src="{% static 'images/def_recipe.png' %}"
+                        class="card-img-top"
+                        style="height:200px; object-fit:cover;">
+                {% endif %}
 
-                    <div class="card-footer d-flex justify-content-between align-items-center">
-                        <span>Likes: {{ recipe.likes_count }}</span>
+                <div class="card-body text-center">
+                    <h4>{{ recipe.author }}</h4>
+                    <h5>{{ recipe.title }}</h5>
 
-                        {% if user.is_authenticated %}
-                            {% if recipe.user_liked %}
-                                <a href="{% url 'recipe-like' recipe.pk %}" class="btn btn-sm btn-outline-danger">Unlike</a>
-                            {% else %}
-                                <a href="{% url 'recipe-like' recipe.pk %}" class="btn btn-sm btn-outline-primary">Like</a>
-                            {% endif %}
-                        {% endif %}
+                    <p class="text-muted small">
+                        {{ recipe.likes_count }} likes
+                    </p>
 
-                    </div>
-
+                    <a href="{% url 'recipe-details' recipe.pk %}"
+                       class="btn btn-outline-dark btn-sm">
+                        View
+                    </a>
                 </div>
+
             </div>
-        {% endfor %}
-    </div>
+
+        </div>
+    {% endfor %}
+</div>
 {% else %}
-    <p>No recipes submitted yet. Be the first to submit!</p>
+<p class="text-center text-muted">
+    No recipes submitted yet.
+</p>
 {% endif %}
 
 {% else %}
 
-<div class="text-center mt-5">
-    <h2>No active challenges at the moment</h2>
-    <p class="text-muted">Check back later for the next cooking challenge!</p>
+<!-- NO ACTIVE CHALLENGE -->
+<div class="text-center py-5">
+    <h2>No Active Challenge</h2>
+    <p class="text-muted">
+        There is currently no active challenge. Please check back later!
+    </p>
+
+    {% if user.is_staff %}
+        <a href="{% url 'challenge-create' %}" class="btn btn-dark mt-3">
+            Create First Challenge
+        </a>
+    {% endif %}
 </div>
 
 {% endif %}
