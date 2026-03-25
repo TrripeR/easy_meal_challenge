@@ -1,31 +1,50 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %}Winning Recipes{% endblock %}
 
 {% block content %}
 
-<h1 class="mb-4 text-center">Winning Recipes</h1>
+<h2 class="text-center mb-5">🏆 Winning Recipes</h2>
 
 {% if winning_recipes %}
-    <div class="row">
-        {% for recipe in winning_recipes %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    {% if recipe.image_url %}
-                        <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.title }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ recipe.title }}</h5>
-                        <p class="card-text"><strong>By:</strong> {{ recipe.author.user.username }}</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="{% url 'recipe-details' recipe.pk %}" class="btn btn-primary btn-sm">View Recipe</a>
-                    </div>
+<div class="row">
+
+    {% for recipe in winning_recipes %}
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100 shadow-sm">
+
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}"
+                         class="card-img-top"
+                         style="height:200px; object-fit:cover;">
+                {% else %}
+                    <img src="{% static 'images/challenge_img.png' %}"
+                         class="card-img-top"
+                         style="height:200px; object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body text-center">
+                    <h5>{{ recipe.title }}</h5>
+                    <p class="text-muted">by {{ recipe.author }}</p>
+
+                    <a href="{% url 'recipe-details' recipe.pk %}"
+                       class="btn btn-dark btn-sm mt-2">
+                        View Recipe
+                    </a>
                 </div>
+
             </div>
-        {% endfor %}
-    </div>
+
+        </div>
+    {% endfor %}
+
+</div>
 {% else %}
-    <p class="text-center">No winning recipes yet. Check back soon!</p>
+<p class="text-center text-muted">
+    No winning recipes yet.
+</p>
 {% endif %}
 
 {% endblock %}

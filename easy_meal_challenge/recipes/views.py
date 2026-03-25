@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
@@ -73,8 +74,15 @@ class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         recipe = self.get_object()
-        return recipe.author == self.request.user
+        return recipe.author.user == self.request.user or self.request.user.is_staff
 
+    def get_success_url(self):
+        recipe = self.get_object()
+
+        if self.request.user.is_staff:
+            return reverse_lazy('active-challenge')
+
+        return reverse_lazy('profile')
 
 class WinnerListView(ListView):
     model = Recipe
@@ -101,4 +109,19 @@ def toggle_like(request, pk):
     else:
         Like.objects.create(recipe=recipe, user=profile)
 
-    return redirect('active-challenge')
+    return redirect('recipe-details', pk=pk)
+
+
+@staff_member_required
+def award_winner(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+
+    if not recipe.is_winner:
+        recipe.is_winner = True
+        recipe.save()
+
+    else:
+        recipe.is_winner = False
+        recipe.save()
+
+    return redirect('recipe-details', pk=pk)
