@@ -1,5 +1,6 @@
+from django.db.models import Count
 from django.shortcuts import render
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView, TemplateView, ListView
 
 from easy_meal_challenge.challenges.forms import ChallengeCreateForm, ChallengeUpdateForm
 from easy_meal_challenge.challenges.models import Challenge
@@ -53,3 +54,29 @@ class ChallengeCreateView(UserPassesTestMixin, CreateView):
 
     def test_func(self):
         return self.request.user.is_staff
+
+class ChallengeListView(ListView):
+    model = Challenge
+    template_name = 'challenges/challenge_list.html'
+    context_object_name = 'challenges'
+    ordering = ['-start_date']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        challenges_with_recipes = []
+
+        for challenge in context['challenges']:
+            top_recipes = Recipe.objects.filter(
+                challenge=challenge
+            ).annotate(
+                like_count=Count('likes')
+            ).order_by('-like_count')[:3]
+
+            challenges_with_recipes.append({
+                'challenge': challenge,
+                'top_recipes': top_recipes
+            })
+
+        context['challenge_data'] = challenges_with_recipes
+        return context

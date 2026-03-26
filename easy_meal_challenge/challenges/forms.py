@@ -8,6 +8,21 @@ class ChallengeCreateForm(forms.ModelForm):
         model = Challenge
         fields = ('title', 'description', 'required_ingredients', 'max_ingredients', 'theme', 'start_date', 'end_date', 'is_active' )
 
+        widgets = {
+            'start_date': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control'
+                }
+            ),
+            'end_date': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control'
+                }
+            ),
+        }
+
     def clean(self):
         cleaned_data = super().clean()
 
@@ -25,3 +40,18 @@ class ChallengeUpdateForm(forms.ModelForm):
     class Meta:
         model = Challenge
         fields = ('title', 'description', 'required_ingredients', 'max_ingredients', 'theme', 'start_date', 'end_date', 'is_active')
+
+        widgets = {
+            'start_date': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control'
+                }
+            ),
+            'end_date': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control'
+                }
+            ),
+        }
