@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aea83d81-94ff-4b40-93c4-b6ccc8f94a68" name="Changes" comment="almost... maybe...">
-      <change afterPath="$PROJECT_DIR$/templates/challenges/challenge_list.html" afterDir="false" />
+    <list default="true" id="aea83d81-94ff-4b40-93c4-b6ccc8f94a68" name="Changes" comment="more work done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_meal_challenge/challenges/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/easy_meal_challenge/challenges/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +162,7 @@
       <workItem from="1774110621048" duration="5832000" />
       <workItem from="1774373790754" duration="5532000" />
       <workItem from="1774462351631" duration="2459000" />
-      <workItem from="1774550308477" duration="1796000" />
+      <workItem from="1774550308477" duration="2820000" />
     </task>
     <task id="LOCAL-00001" summary="first models">
       <option name="closed" value="true" />
@@ -306,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774463194060</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="more work done">
+      <option name="closed" value="true" />
+      <created>1774552444011</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1774552444011</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,7 +326,8 @@
     <MESSAGE value="work in progres..." />
     <MESSAGE value="more work in progres..." />
     <MESSAGE value="almost... maybe..." />
-    <option name="LAST_COMMIT_MESSAGE" value="almost... maybe..." />
+    <MESSAGE value="more work done" />
+    <option name="LAST_COMMIT_MESSAGE" value="more work done" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/easy_meal_challenge$check.coverage" NAME="check Coverage Results" MODIFIED="1774036462899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/easy_meal_challenge" />
